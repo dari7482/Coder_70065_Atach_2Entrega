@@ -1,0 +1,26 @@
+{
+  "name": "coder_70065_atach_2entrega",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node --watch src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dari7482/Coder_70065_Atach_2Entrega.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dari7482/Coder_70065_Atach_2Entrega/issues"
+  },
+  "homepage": "https://github.com/dari7482/Coder_70065_Atach_2Entrega#readme",
+  "dependencies": {
+    "express": "^4.19.2",
+    "express-handlebars": "^7.1.3",
+    "socket.io": "^4.7.5"
+  }
+}
