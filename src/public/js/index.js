@@ -40,21 +40,42 @@ newProduct.addEventListener("submit",e=>{
     let id = idN.toString()
     console.log(typeof(id))
 
+    const formData = new FormData(newProduct);
+      const producto = {
+        id,
+        name: formData.get('name'),
+        type: formData.get('type'),
+        description: formData.get('description'),
+        stock: formData.get('stock'),
+        serie: formData.get('serie'),
+        price: formData.get('price')
+      };
     
-    const name = newProduct.elements['name'].value;
-    const type = newProduct.elements['type'].value;
-    const description = newProduct.elements['description'].value;
-    const stock = newProduct.elements['stock'].value;
-    const serie = newProduct.elements['serie'].value;
-    const price = newProduct.elements['price'].value;    
-    console.log(name)
-    socket.emit("message", {id,name,type,description,stock,serie,price })
+    fetch('/NewProduct', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(producto)
+      }).then(response => {
+        if (response.ok) {
+          
+        } else {
+          console.error('Error al enviar el producto');
+        }
+      });
+
+
+
+
+   // socket.emit("message", {id,name,type,description,stock,serie,price })
 
 })
 
 
 socket.on("messageLogs", newProductArray => {
     console.log(newProductArray)
+    const base='01'
     let newProductArrayAdd = document.getElementById("cardcontainer")
     newProductArrayAdd.innerHTML=""
     newProductArray.forEach(({name,id,type,price,stock,description      
@@ -64,7 +85,7 @@ socket.on("messageLogs", newProductArray => {
         prodCard.innerHTML = `
                         <div class="card-container">
                             <div class="card-image">
-                                <img src="./img/${id}.png">
+                                <img src="./img/${id}.png" onerror="this.onerror=null;this.src="./img/${base}.png"; >
                             </div>
                             <div class="card-descripcion">
                                 <p>ID:${id}</p>
@@ -127,4 +148,15 @@ socket.on("newArrayItems", newProductArray => {
                         })
 
   
+})
+
+
+socket.on("productNotFound",(messsage)=>{
+
+    alert(messsage)
+
+
+
+
+
 })

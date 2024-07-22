@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/dari7482/Coder_70065_Atach_2Entrega#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.19.2",
     "express-handlebars": "^7.1.3",
     "socket.io": "^4.7.5"
