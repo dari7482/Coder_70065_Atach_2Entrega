@@ -489,7 +489,7 @@ nav div div div {
     margin-top: 3rem;
     display: flex;
     justify-content: center;
-    flex-direction: column;
+    flex-direction: row;
     padding: 2rem;
     background-image: url("../img/nubesNavBar.png");
     width: 90vw;
@@ -547,10 +547,110 @@ flex-direction: column;
 
 }
 
+.section-capitulos-delete {
+
+    width: 91%;
+    display: flex;
+    background-image: url("../img/nubes.png");
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 50px;
+    margin-left: 70px;
+    justify-content: flex-start;
+
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 60px;
+
+
+}
+
+.section-capitulos-delete h1 {
+
+    font-family: "Merienda One", cursive;
+    font-size: 2rem;
+}
+
+.section-capitulos-delete h2 {
+    font-family: "Merienda One", cursive;
+    font-size: 4rem;
+    margin-bottom: 30px;
+
+
+}
+
+.form-newProduct-delete div{
+    display: flex;
+    justify-content: center;
+    column-gap: 10px;
+    margin-bottom: 5px;
+
+
+}
+
+.form-newProduct div{
+   
+    display: flex;
+    justify-content: center;
+    column-gap: 10px;
+    margin-bottom: 5px;
+
+
+}
+.form-newProduct-delete{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+
+
+}
+
+.form-group{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.buttonAddNew{
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+
+
+
+}
+
+.buttonAddNew input{
+    background-color: rgb(168, 217, 209);
+    border-radius: 15px;
+    color: rgb(0, 0, 0);
+    font-family: "Merienda One", cursive;
+    font-size: xx-large;
+    cursor: pointer;
+    
+
+    
+}
+
 .section-capitulos h1 {
 
     font-family: "Merienda One", cursive;
-    font-size: 6rem;
+    font-size: 2rem;
 }
 
 .section-capitulos h2 {
