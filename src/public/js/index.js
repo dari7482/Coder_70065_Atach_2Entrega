@@ -3,20 +3,33 @@
 const socket = io()
 
 //console.log(socket)
-console.log('index') 
+console.log('index')
 
 
-let newProduct=document.getElementById("sectionForm")
-let deleteProduct=document.getElementById("sectionFormId")
+let newProduct = document.getElementById("sectionForm")
+let deleteProduct = document.getElementById("sectionFormId")
 
-deleteProduct.addEventListener("submit",e=>{
+deleteProduct.addEventListener("submit", e => {
     e.preventDefault()
-    
-    // Acceder a los elementos del formulario de manera explícita
-   
-    
+    // Acceder a los elementos del formulario de manera explícita     
     const id = deleteProduct.elements['id'].value;
-    socket.emit("deleteId", {id})
+    console.log(id)
+
+    fetch(`/deleteProduct/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        //body: JSON.stringify(id)
+    }).then(response => {
+        if (response.ok) {
+
+        } else {
+            console.error('Error al enviar el producto');
+        }
+    });
+
+    //socket.emit("deleteId", { id })
 
 })
 
@@ -24,24 +37,24 @@ deleteProduct.addEventListener("submit",e=>{
 
 
 
-newProduct.addEventListener("submit",e=>{
+newProduct.addEventListener("submit", e => {
     e.preventDefault()
-    
+
     // Acceder a los elementos del formulario de manera explícita
     const dateId = new Date()
     const dayId = dateId.getDay()
-    let idsecond=dateId.getSeconds()
-    let idmillisecond=dateId.getMilliseconds()
+    let idsecond = dateId.getSeconds()
+    let idmillisecond = dateId.getMilliseconds()
     console.log(dayId)
     console.log(idmillisecond)
     console.log(idsecond)
 
     let idN = dayId + idmillisecond + idsecond
     let id = idN.toString()
-    console.log(typeof(id))
+    console.log(typeof (id))
 
     const formData = new FormData(newProduct);
-      const producto = {
+    const producto = {
         id,
         name: formData.get('name'),
         type: formData.get('type'),
@@ -49,38 +62,38 @@ newProduct.addEventListener("submit",e=>{
         stock: formData.get('stock'),
         serie: formData.get('serie'),
         price: formData.get('price')
-      };
-    
+    };
+
     fetch('/NewProduct', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify(producto)
-      }).then(response => {
+    }).then(response => {
         if (response.ok) {
-          
+
         } else {
-          console.error('Error al enviar el producto');
+            console.error('Error al enviar el producto');
         }
-      });
+    });
 
 
 
 
-   // socket.emit("message", {id,name,type,description,stock,serie,price })
+    // socket.emit("message", {id,name,type,description,stock,serie,price })
 
 })
 
 
 socket.on("messageLogs", newProductArray => {
     console.log(newProductArray)
-    const base='01'
+    const base = '01'
     let newProductArrayAdd = document.getElementById("cardcontainer")
-    newProductArrayAdd.innerHTML=""
-    newProductArray.forEach(({name,id,type,price,stock,description      
-    })=>{
-    const prodCard = document.createElement("div")
+    newProductArrayAdd.innerHTML = ""
+    newProductArray.forEach(({ name, id, type, price, stock, description
+    }) => {
+        const prodCard = document.createElement("div")
         prodCard.style = "width:15rem"
         prodCard.innerHTML = `
                         <div class="card-container">
@@ -104,11 +117,11 @@ socket.on("messageLogs", newProductArray => {
                                 <div id="valorcontador${id}">0</div>
                             </div>
                          </div>  `
-                         newProductArrayAdd.appendChild(prodCard)     
-        
-                        })
+        newProductArrayAdd.appendChild(prodCard)
 
-  
+    })
+
+
 })
 
 
@@ -116,10 +129,10 @@ socket.on("messageLogs", newProductArray => {
 socket.on("newArrayItems", newProductArray => {
     console.log(newProductArray)
     let newProductArrayAdd = document.getElementById("cardcontainer")
-    newProductArrayAdd.innerHTML=""
-    newProductArray.forEach(({name,id,type,price,stock,description      
-    })=>{
-    const prodCard = document.createElement("div")
+    newProductArrayAdd.innerHTML = ""
+    newProductArray.forEach(({ name, id, type, price, stock, description
+    }) => {
+        const prodCard = document.createElement("div")
         prodCard.style = "width:15rem"
         prodCard.innerHTML = `
                         <div class="card-container">
@@ -143,15 +156,17 @@ socket.on("newArrayItems", newProductArray => {
                                 <div id="valorcontador${id}">0</div>
                             </div>
                          </div>  `
-                         newProductArrayAdd.appendChild(prodCard)     
-        
-                        })
+        newProductArrayAdd.appendChild(prodCard)
 
-  
+    })
+
+    alert("producto eliminado")
+
+
 })
 
 
-socket.on("productNotFound",(messsage)=>{
+socket.on("productNotFound", (messsage) => {
 
     alert(messsage)
 
