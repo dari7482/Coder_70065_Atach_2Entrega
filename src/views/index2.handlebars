@@ -1,0 +1,142 @@
+<main>
+    <div>
+        <nav id="navContainerGrid" class="grid-container">
+            <div id="navContainer" class="container-nav">
+                <div>
+                    <div>
+                        <img src="./img/icons8-homero-simpson-30.svg">
+
+                    </div>
+                    <p>Collection Animated Figures</p>
+                </div>
+
+                <div class="fields">
+                    <label class="switch2">
+                        <input id="switch" type="checkbox">
+                        <span class="s2 around2"></span>
+                    </label>
+                </div>
+                <ul>
+                    <li><a>Home</a></li>
+                    <li><a>News</a></li>
+                    <li><a>Contact</a></li>
+                    <li><a>About</a></li>
+                    <li id="contCarrito" class="contCarrito"> </li>
+                </ul>
+            </div>
+
+        </nav>
+    </div>
+    <section class="grid-sectioncards" id="cardcontainer">
+
+        {{#each products}}
+        <div style="width: 15rem" id="containerCards">
+            <div class="card-container">
+                <div class="card-image">
+                    <img src="./img/{{id}}.png">
+                </div>
+                <div class="card-descripcion">
+                    <p>ID:{{this.id}}</p>
+                    <p>{{this.description}}</p>
+                    <p>${{this.price}}</p>
+                </div>
+                <div class="button-add">
+                    <button id="add${id}">+</button>
+                    <button id="re${id}">-</button>
+                </div>
+                <div class="button-addcart">
+                    <button id="boton${id}">Add To Cart</button>
+
+                </div>
+                <div class="input-cantidad">
+                    <div id="valorcontador${id}">0</div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+
+    </section>
+    <section class="grid-form">
+
+        <div class="section-capitulos">
+            <h1>Add New Product</h1>
+
+            <div class="form-newProduct">
+                <form id="sectionForm">
+                    <div class="form-group-section">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" placeholder="name.." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="type">Type</label>
+                            <input type="text" id="type" name="type" placeholder="Type.." required>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <input type="text" id="description" name="description" placeholder="description.." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="stock">Stock</label>
+                            <input type="text" id="stock" name="stock" placeholder="Stock.." required>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="form-group">
+                            <label for="serie">Serie</label>
+                            <input type="text" id="serie" name="serie" placeholder="Serie.." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Price</label>
+                            <input type="text" id="price" name="price" placeholder="Price.." required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Submit">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="section-capitulos-delete">
+            <h1>Delte by ID Product</h1>
+            <form class="form-newProduct-delete" id="sectionFormId">
+                <div class="form-group">
+                    <label for="name">ID</label>
+                    <input type="text" id="id" name="id" placeholder="id.." required>
+                </div>
+
+                <div class="form-group">
+
+                    <input type="submit" value="Submit">
+                </div>
+            </form>
+
+        </div>
+
+    </section>
+
+    <footer>
+        <div class="footerHeader">
+            <div>
+                <h1>Coolection Animated Figured</h1>
+            </div>
+
+        </div>
+
+
+        <div class="footerDiv">
+            <div>
+                <img src="./img/homeroRosquilla.png">
+
+
+            </div>
+        </div>
+    </footer>
+
+</main>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/index.js"></script>
